@@ -1,19 +1,20 @@
 <script>
 // @ts-nocheck
 
-    import * as d3 from 'd3';
+  import * as d3 from 'd3';
 	import { onMount } from 'svelte';
   
-    export let data;
+    let data;
     export let width = 640;
     export let height = 400;
     export let marginTop = 20;
     export let marginRight = 20;
     export let marginBottom = 20;
-    export let marginLeft = 20;
+    export let marginLeft = 30;
     let svg = undefined;
 
-  onMount(() => {
+    export function loadGraph(data) {
+      
     const x = d3.scaleLinear()
       .domain([0, data.length - 1])
       .range([marginLeft, width - marginRight]);
@@ -42,6 +43,13 @@
     svgEl.append("g")
       .attr("transform", `translate(${marginLeft},0)`)
       .call(d3.axisLeft(y));
+    
+    }
+
+  onMount(() => {
+    if (!data) return
+
+    loadGraph(data);
 });
 
   </script>
