@@ -27,7 +27,10 @@ export const actions = {
 			});
 		}
 
-		console.log(id, config1, config2);
+		const stmt = db.prepare(
+			"INSERT or REPLACE into sensor_configs (sensorID, config1, config2) VALUES (?, ?, ?)"
+		);
+		stmt.run(id, config1, config2);
 
 		return {
 			success: true

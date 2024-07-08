@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let data;
 	//export let form;
-	//console.log(form);
 	import { enhance } from "$app/forms";
 
 	interface configObject {

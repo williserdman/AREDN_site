@@ -20,7 +20,6 @@ export const POST = async ({ request }) => {
 	);
 
 	const config = getConfig(body["sensorID"]);
-	console.log(config);
 
 	return new Response(JSON.stringify(config), { status: 200 });
 };
