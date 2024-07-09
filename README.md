@@ -41,9 +41,9 @@ The project focuses on understanding and monitoring:
 
 ## Contributors
 
-- [Dr. Joshua Mendex] - Role: Project Lead
+- Dr. Joshua Mendez - Role: Project Lead
 - [Willis Erdman](https://github.com/williserdman) - Role: Laboratory Technician
-- [Tom] - Role: Laboratory Technician
+- Tom - Role: Laboratory Technician
 
 ## License
 
