@@ -112,12 +112,13 @@
 
 	// setting the dates to be one day apart
 	const yesterday = new Date(new Date().setDate(new Date().getDate() - 1)); // appearently not that efficient
+	const tommorow = new Date(new Date().setDate(new Date().getDate() + 1));
 
 	type dateString = string;
 	let startDate: Date;
 	let endDate: Date;
 	let stringDateStart: dateString = formatDate(yesterday);
-	let stringDateEnd: dateString = formatDate(new Date());
+	let stringDateEnd: dateString = formatDate(tommorow);
 	changeDateRange();
 
 	function changeDateRange(): void {
