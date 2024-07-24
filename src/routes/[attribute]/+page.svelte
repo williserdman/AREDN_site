@@ -48,7 +48,6 @@
 		chart = new Chart(ctx, {
 			type: "line",
 			data: {
-				/* labels: stringTime, */
 				datasets: datasets
 			},
 			options: {
