@@ -103,8 +103,19 @@
 </script>
 
 <form action="?/callsign" method="POST" use:enhance>
-	<input type="text" name="id" bind:this={callsignForm} />
-	<button>go</button>
+	<div class="mx-4">
+		<div class="field is-grouped">
+			<input
+				type="text"
+				name="id"
+				class="input is-rounded"
+				bind:this={callsignForm}
+				placeholder="N0CALL-1"
+			/>
+			<input type="date" />
+			<button class="button is-primary">go</button>
+		</div>
+	</div>
 </form>
 
 {#if info}
