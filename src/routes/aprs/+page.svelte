@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import Graphs from "$lib/components/APRSGraphs.svelte";
+	import { formatDate } from "$lib/helpers.js";
 	import { onMount } from "svelte";
 
 	let callsignForm: HTMLInputElement;
 	let info: string | null = null;
 	let telemetry: string | null = null;
 	let mounted = false;
+	let callsignFormDate: HTMLDataElement;
 
 	export let data;
 	export let form;
@@ -18,6 +20,7 @@
 	function formSubmit() {
 		info = data.info;
 		if (form) {
+			callsignFormDate.value = form.date as string;
 			newTelem = false;
 			if (form!.status == 200) {
 				console.log(form);
@@ -99,6 +102,7 @@
 
 	onMount(() => {
 		mounted = true;
+		callsignFormDate.value = formatDate(new Date());
 	});
 </script>
 
@@ -112,7 +116,7 @@
 				bind:this={callsignForm}
 				placeholder="N0CALL-1"
 			/>
-			<input type="date" />
+			<input type="date" name="date" bind:this={callsignFormDate} />
 			<button class="button is-primary">go</button>
 		</div>
 	</div>

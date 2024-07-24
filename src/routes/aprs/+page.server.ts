@@ -2,7 +2,6 @@
 import path from "path";
 //@ts-ignore
 import fs from "fs";
-import { fail } from "@sveltejs/kit";
 import { parse } from "csv-parse";
 import { stringify } from "csv-stringify";
 
@@ -24,11 +23,21 @@ export const actions = {
 	callsign: async ({ request }) => {
 		const formData = await request.formData();
 		let id = formData.get("id");
+		let date = formData.get("date");
+		console.log(date);
 
 		console.log(id);
 
-		const filePath = path.resolve("2024-07-23.log"); // Adjust the path to your CSV file
-		const fileContent = fs.readFileSync(filePath, "utf-8");
+		let filePath, fileContent;
+		try {
+			filePath = path.resolve(`${date}.log`); // Adjust the path to your CSV file
+			fileContent = fs.readFileSync(filePath, "utf-8");
+		} catch {
+			return {
+				status: 404,
+				info: `no such file ${date}.log`
+			};
+		}
 
 		if ((id as string) == "") {
 			return {
@@ -93,7 +102,8 @@ export const actions = {
 			info: csvString,
 			id: id,
 			telemetry: telems,
-			times
+			times,
+			date
 		};
 	}
 };
