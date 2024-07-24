@@ -21,7 +21,7 @@
 	<div class="tabs is-centered is-boxed m-6">
 		<ul>
 			<li class:is-active={active === 1} on:click={() => (active = 1)}>
-				<a href="/meshtastic/CO2" data-sveltekit-preload-data>CO2</a>
+				<a href="/meshtastic/CO2" data-sveltekit-preload-data data-sveltekit-preload-code>CO2</a>
 			</li>
 			<li
 				class:is-active={active === 2}
@@ -29,7 +29,9 @@
 					active = 2;
 				}}
 			>
-				<a href="/meshtastic/temperature" data-sveltekit-preload-data>Temperature</a>
+				<a href="/meshtastic/temperature" data-sveltekit-preload-data data-sveltekit-preload-code
+					>Temperature</a
+				>
 			</li>
 			<li
 				class:is-active={active === 3}
@@ -37,10 +39,13 @@
 					active = 3;
 				}}
 			>
-				<a href="/meshtastic/humidity" data-sveltekit-preload-data>Humidity</a>
+				<a href="/meshtastic/humidity" data-sveltekit-preload-data data-sveltekit-preload-code
+					>Humidity</a
+				>
 			</li>
 			<li class:is-active={active === 0} on:click={() => (active = 0)}>
-				<a href="/meshtastic" data-sveltekit-preload-data>Admin Panel</a>
+				<a href="/meshtastic" data-sveltekit-preload-data data-sveltekit-preload-code>Admin Panel</a
+				>
 			</li>
 		</ul>
 	</div>
