@@ -14,6 +14,7 @@ type DataRow = special & {
 export async function load({ params }) {
 	const getData = async () => {
 		const requestedAttribute = params.attribute;
+		console.log(requestedAttribute);
 
 		try {
 			if (isNumeric(requestedAttribute)) {
