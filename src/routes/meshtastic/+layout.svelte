@@ -49,7 +49,7 @@
 				>
 			</li>
 			<li
-				class:is-active={active === 3}
+				class:is-active={active === 4}
 				on:click={() => {
 					active = 4;
 				}}
@@ -58,7 +58,7 @@
 				>
 			</li>
 			<li
-				class:is-active={active === 3}
+				class:is-active={active === 5}
 				on:click={() => {
 					active = 5;
 				}}
@@ -66,7 +66,7 @@
 				<a href="/meshtastic/hum2" data-sveltekit-preload-data data-sveltekit-preload-code>Hum2</a>
 			</li>
 			<li
-				class:is-active={active === 3}
+				class:is-active={active === 6}
 				on:click={() => {
 					active = 6;
 				}}
@@ -76,7 +76,7 @@
 				>
 			</li>
 			<li
-				class:is-active={active === 3}
+				class:is-active={active === 7}
 				on:click={() => {
 					active = 7;
 				}}
@@ -86,7 +86,7 @@
 				>
 			</li>
 			<li
-				class:is-active={active === 3}
+				class:is-active={active === 8}
 				on:click={() => {
 					active = 8;
 				}}
