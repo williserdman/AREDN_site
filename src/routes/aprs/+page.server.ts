@@ -6,7 +6,12 @@ import { parse } from "csv-parse";
 import { stringify } from "csv-stringify";
 
 const getAllData = async () => {
-	const filePath = path.resolve("2024-07-23.log"); // Adjust the path to your CSV file
+	const today = new Date();
+	const yyyy = today.getFullYear();
+	const mm = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+	const dd = String(today.getDate()).padStart(2, "0");
+
+	const filePath = path.resolve(`${yyyy}-${mm}-${dd}.log`); // Adjust the path to your CSV file
 	const fileContent = fs.readFileSync(filePath, "utf-8");
 
 	return fileContent;
