@@ -6,7 +6,7 @@ To begin, flash your Raspberry Pi Pico with the MicroPython port provided by Wiz
 One important note: I discovered that the HTTP server functionality did not work as expected on the Pico. Instead, when forwarding data, the Pico should act as an HTTP client. The best way to set this up is by using the `urequests.py` wrapper, which builds on top of the `requests` library. This wrapper addresses a few issues and provides a smoother experience. Additionally, it's commonly used with WizHat devices. Be sure to copy the `urequests.py` [file](https://github.com/Wiznet/RP2040-HAT-MicroPython/blob/main/examples/HTTP/HTTP_Client/urequests.py) to the root-level directory of the Pico.
 
 #### 2. Setting Up the SPI Interface with the Heltec Meshtastic Device
-Once the Pico is flashed, the next step is to configure the SPI interface to communicate with the Heltec Meshtastic device. The Pico automatically runs the `main.py` file upon powering up. Any data that can be loaded into the Pico’s memory can be forwarded, so you’re not limited to data received over SPI or UART.
+Once the Pico is flashed, the next step is to configure the SPI interface to communicate with the Heltec Meshtastic device. The Pico automatically runs the `main.py` file upon powering up. Any data that can be loaded into the Pico’s memory can be forwarded, so you’re not limited to data received over SPI or UART. [See more.](https://github.com/williserdman/AREDN_site/tree/main/pico_code)
 
 In this setup, we utilized the RX/TX pins (0 and 1) to establish communication with the Meshtastic device.
 
