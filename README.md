@@ -3,12 +3,14 @@
 #### 1. Flashing the Pico with WizHat's MicroPython Port
 To begin, flash your Raspberry Pi Pico with the MicroPython port provided by WizHat. This customized firmware is crucial for ensuring compatibility with the WizHat's hardware. Fortunately, you don't need to build the firmware from scratch; a [prebuilt release](https://github.com/Wiznet/RP2040-HAT-MicroPython/blob/main/Ethernet%20Example%20Getting%20Started%20%5BMicropython%5D.md#deploying-firmware-to-the-device) is provided by Wiznet, making the process straightforward.
 
-One important note: I discovered that the HTTP server functionality did not work as expected on the Pico. Instead, when forwarding data, the Pico should act as an HTTP client. The best way to set this up is by using the `urequests.py` wrapper, which builds on top of the `requests` library. This wrapper addresses a few issues and provides a smoother experience. Additionally, it's commonly used with WizHat devices. Be sure to copy the `urequests.py` file to the root-level directory of the Pico.
+One important note: I discovered that the HTTP server functionality did not work as expected on the Pico. Instead, when forwarding data, the Pico should act as an HTTP client. The best way to set this up is by using the `urequests.py` wrapper, which builds on top of the `requests` library. This wrapper addresses a few issues and provides a smoother experience. Additionally, it's commonly used with WizHat devices. Be sure to copy the `urequests.py` [file](https://github.com/Wiznet/RP2040-HAT-MicroPython/blob/main/examples/HTTP/HTTP_Client/urequests.py) to the root-level directory of the Pico.
 
 #### 2. Setting Up the SPI Interface with the Heltec Meshtastic Device
 Once the Pico is flashed, the next step is to configure the SPI interface to communicate with the Heltec Meshtastic device. The Pico automatically runs the `main.py` file upon powering up. Any data that can be loaded into the Pico’s memory can be forwarded, so you’re not limited to data received over SPI or UART.
 
 In this setup, we utilized the RX/TX pins (0 and 1) to establish communication with the Meshtastic device.
+
+See [the code]() for further detail.
 
 #### 3. Sending HTTP Requests Using `urequests.py`
 After configuring the SPI interface, you can use the `urequests.py` module to send HTTP requests. This module allows the Pico to communicate with other devices over the network. Configure the Pico to send HTTP POST requests to a specific IP address where your server will be listening.
@@ -57,8 +59,3 @@ ORIGIN=http://hostname.local.mesh:PORT node build
 Next, connect the Pico to its AREDN node. Since we’re using the direct IP address, the Pico should not be affected by DNS propagation delays. However, it may produce an error if the API endpoint is not accessible, so it’s recommended to initialize and connect the Raspberry Pi before the Pico.
 
 Finally, connect your machine to its AREDN node. I found that it took about three minutes for the hostname to start resolving correctly. Nonetheless, the site should remain accessible via `http://IP:PORT`.
-
-#### Stepping Through the Code
-In this setup, the API runs at `http://mysite.local.mesh:3000/api`. The following code will demonstrate how data is being sent to the API. 
-
-This full writeup provides a comprehensive guide to setting up a Raspberry Pi Pico with an AREDN network for remote data logging, covering everything from flashing the Pico to configuring the network and API.
