@@ -1,8 +1,8 @@
 // src/lib/database.ts
-import Database from 'better-sqlite3';
+import Database from "better-sqlite3";
 
 // Initialize the database connection
-const db = new Database('my-database.db', { verbose: console.log });
+const db = new Database("my-database.db", { verbose: console.log });
 
 // Create a table if it doesn't exist
 db.exec(`
@@ -11,6 +11,11 @@ db.exec(`
     CO2 REAL,
     temperature REAL,
     humidity REAL,
+    temp2 REAL,
+    hum2 REAL,
+    pressure REAL,
+    altitude REAL,
+    gas REAL,
     createdAt TEXT DEFAULT CURRENT_TIMESTAMP
   )
 `);
@@ -21,11 +26,11 @@ db.exec(`
         config1 TEXT,
         config2 REAL
     )
-    `)
+    `);
 
 export function queryAll(table: string = "sensor_data") {
-    const stmt = db.prepare(`SELECT * FROM ${table}`);
-    return stmt.all();
+	const stmt = db.prepare(`SELECT * FROM ${table}`);
+	return stmt.all();
 }
 
 export { db };
