@@ -9,13 +9,18 @@ export const POST = async ({ request }) => {
 	}
 
 	const stmt = db.prepare(
-		"INSERT INTO sensor_data (sensorID, CO2, temperature, humidity, createdAt) VALUES (?, ?, ?, ?, ?)"
+		"INSERT INTO sensor_data (sensorID, CO2, temperature, humidity, temp2, hum2, pressure, altitude, gas, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	);
 	const info = stmt.run(
 		body["sensorID"],
 		body["CO2"],
 		body["temperature"],
 		body["humidity"],
+		body["temp2"],
+		body["hum2"],
+		body["pressure"],
+		body["altitude"],
+		body["gas"],
 		Date.now()
 	);
 
