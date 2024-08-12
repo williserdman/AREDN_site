@@ -6,11 +6,11 @@ To begin, flash your Raspberry Pi Pico with the MicroPython port provided by Wiz
 One important note: I discovered that the HTTP server functionality did not work as expected on the Pico. Instead, when forwarding data, the Pico should act as an HTTP client. The best way to set this up is by using the `urequests.py` wrapper, which builds on top of the `requests` library. This wrapper addresses a few issues and provides a smoother experience. Additionally, it's commonly used with WizHat devices. Be sure to copy the `urequests.py` [file](https://github.com/Wiznet/RP2040-HAT-MicroPython/blob/main/examples/HTTP/HTTP_Client/urequests.py) to the root-level directory of the Pico.
 
 #### 2. Setting Up the SPI Interface with the Heltec Meshtastic Device
-Once the Pico is flashed, the next step is to configure the SPI interface to communicate with the Heltec Meshtastic device. The Pico automatically runs the `main.py` file upon powering up. Any data that can be loaded into the Pico’s memory can be forwarded, so you’re not limited to data received over SPI or UART. [See more.](https://github.com/williserdman/AREDN_site/tree/main/pico_code)
+Once the Pico is flashed, the next step is to configure the SPI interface to communicate with the Heltec Meshtastic device. The Pico automatically runs the `main.py` file upon powering up. Any data that can be loaded into the Pico’s memory can be forwarded, so you’re not limited to data received over SPI or UART.
 
 In this setup, we utilized the RX/TX pins (0 and 1) to establish communication with the Meshtastic device.
 
-See [the code]() for further detail.
+See [the code](https://github.com/williserdman/AREDN_site/tree/main/pico_code) for further details.
 
 #### 3. Sending HTTP Requests Using `urequests.py`
 After configuring the SPI interface, you can use the `urequests.py` module to send HTTP requests. This module allows the Pico to communicate with other devices over the network. Configure the Pico to send HTTP POST requests to a specific IP address where your server will be listening.
@@ -40,11 +40,11 @@ To set up the API:
 The port will be specified later.
 
 #### 5. Assigning a Static IP on the AREDN Node
-Connect your Raspberry Pi to the AREDN mesh. When it connects to the AREDN node, it will appear on the DHCP setup page. Although DHCP is not used in this configuration, you can still force the MAC address of the Raspberry Pi to link to a specific IP address. This ensures that the Raspberry Pi will always be assigned the same static IP whenever it connects to the AREDN network.
+Connect your Raspberry Pi to the AREDN mesh. When it connects to the AREDN node, it will appear on the DHCP/setup page. Although DHCP is not used in this configuration, you can still force the MAC address of the Raspberry Pi to link to a specific IP address. This ensures that the Raspberry Pi will always be assigned the same static IP whenever it connects to the AREDN network.
 
-After assigning the IP, you can also assign the Raspberry Pi a static hostname, such as `raspberrypi.local.mesh`. This makes the website accessible at `http://raspberrypi.local.mesh:PORT` instead of relying on an IP address.
+After assigning the IP, you can also assign the Raspberry Pi a static hostname, such as `raspberrypi.local.mesh`. This makes the website accessible at `http://raspberrypi.local.mesh:PORT` instead of relying on an IP address. Typically port `80` is the default HTTP port (to access `http://raspberrypi.local.mesh`).
 
-However, it’s worth noting that the MikroTik routers connected to the AREDN network may not refresh their DNS frequently. This could cause delays in resolving the hostname to the correct IP address. A workaround is to power cycle the AREDN node to which your computer is connected.
+However, it’s worth noting that the MikroTik routers connected to the AREDN network may not refresh their DNS frequently. This could cause delays in resolving the hostname to the correct IP address. A workaround is to power cycle the AREDN node to which your computer is connected once the Raspberry Pi is connected and running.
 
 #### 6. Configuring the Pico to Send Data to the Raspberry Pi
 Due to the DNS limitations mentioned earlier, a more reliable approach is to connect directly via the IP address. Configure the Pico code to send its POST requests to this static IP, ensuring that the port number matches the port on which the Raspberry Pi's API is running. In this setup, we used port 3000.
