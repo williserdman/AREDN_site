@@ -7,7 +7,12 @@
 		"/meshtastic",
 		"/meshtastic/CO2",
 		"/meshtastic/temperature",
-		"/meshtastic/humidity"
+		"/meshtastic/humidity",
+		"/meshtastic/temp2",
+		"/meshtastic/hum2",
+		"/meshtastic/pressure",
+		"/meshtastic/altitude",
+		"/meshtastic/gas"
 	];
 
 	onMount(() => {
@@ -42,6 +47,51 @@
 				<a href="/meshtastic/humidity" data-sveltekit-preload-data data-sveltekit-preload-code
 					>Humidity</a
 				>
+			</li>
+			<li
+				class:is-active={active === 3}
+				on:click={() => {
+					active = 4;
+				}}
+			>
+				<a href="/meshtastic/temp2" data-sveltekit-preload-data data-sveltekit-preload-code>Temp2</a
+				>
+			</li>
+			<li
+				class:is-active={active === 3}
+				on:click={() => {
+					active = 5;
+				}}
+			>
+				<a href="/meshtastic/hum2" data-sveltekit-preload-data data-sveltekit-preload-code>Hum2</a>
+			</li>
+			<li
+				class:is-active={active === 3}
+				on:click={() => {
+					active = 6;
+				}}
+			>
+				<a href="/meshtastic/pressure" data-sveltekit-preload-data data-sveltekit-preload-code
+					>Pressure</a
+				>
+			</li>
+			<li
+				class:is-active={active === 3}
+				on:click={() => {
+					active = 7;
+				}}
+			>
+				<a href="/meshtastic/altitude" data-sveltekit-preload-data data-sveltekit-preload-code
+					>Altitude</a
+				>
+			</li>
+			<li
+				class:is-active={active === 3}
+				on:click={() => {
+					active = 8;
+				}}
+			>
+				<a href="/meshtastic/gas" data-sveltekit-preload-data data-sveltekit-preload-code>Gas</a>
 			</li>
 			<li class:is-active={active === 0} on:click={() => (active = 0)}>
 				<a href="/meshtastic" data-sveltekit-preload-data data-sveltekit-preload-code>Admin Panel</a
