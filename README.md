@@ -1,7 +1,7 @@
 ### Integrating a Raspberry Pi Pico with AREDN for Remote Data Logging
 
 #### 1. Flashing the Pico with WizHat's MicroPython Port
-To begin, flash your Raspberry Pi Pico with the MicroPython port provided by WizHat. This customized firmware is crucial for ensuring compatibility with the WizHat's hardware. Fortunately, you don't need to build the firmware from scratch; a prebuilt release is provided by Wiznet, making the process straightforward.
+To begin, flash your Raspberry Pi Pico with the MicroPython port provided by WizHat. This customized firmware is crucial for ensuring compatibility with the WizHat's hardware. Fortunately, you don't need to build the firmware from scratch; a (prebuilt release)[https://github.com/Wiznet/RP2040-HAT-MicroPython/blob/main/Ethernet%20Example%20Getting%20Started%20%5BMicropython%5D.md#deploying-firmware-to-the-device] is provided by Wiznet, making the process straightforward.
 
 One important note: I discovered that the HTTP server functionality did not work as expected on the Pico. Instead, when forwarding data, the Pico should act as an HTTP client. The best way to set this up is by using the `urequests.py` wrapper, which builds on top of the `requests` library. This wrapper addresses a few issues and provides a smoother experience. Additionally, it's commonly used with WizHat devices. Be sure to copy the `urequests.py` file to the root-level directory of the Pico.
 
