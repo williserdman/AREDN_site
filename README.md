@@ -44,7 +44,7 @@ Connect your Raspberry Pi to the AREDN mesh. When it connects to the AREDN node,
 
 After assigning the IP, you can also assign the Raspberry Pi a static hostname, such as `raspberrypi.local.mesh`. This makes the website accessible at `http://raspberrypi.local.mesh:PORT` instead of relying on an IP address. Typically port `80` is the default HTTP port (to access `http://raspberrypi.local.mesh`).
 
-However, it’s worth noting that the MikroTik routers connected to the AREDN network may not refresh their DNS frequently. This could cause delays in resolving the hostname to the correct IP address. A workaround is to power cycle the AREDN node to which your computer is connected once the Raspberry Pi is connected and running.
+However, it’s worth noting that the MikroTik routers connected to the AREDN network may not refresh their DNS frequently. This could cause delays in resolving the hostname to the correct IP address. A workaround is to power cycle the AREDN node to which your computer is connected once the Raspberry Pi is connected to the mesh.
 
 #### 6. Configuring the Pico to Send Data to the Raspberry Pi
 Due to the DNS limitations mentioned earlier, a more reliable approach is to connect directly via the IP address. Configure the Pico code to send its POST requests to this static IP, ensuring that the port number matches the port on which the Raspberry Pi's API is running. In this setup, we used port 3000.
@@ -53,7 +53,7 @@ Due to the DNS limitations mentioned earlier, a more reliable approach is to con
 Given the DNS issues discussed, the most reliable method is to first initialize the API and connect the Raspberry Pi to the AREDN network. The server should not encounter any issues at this stage, as it isn’t dependent on an active connection. To initialize the Node.js server in the `AREDN_site` directory:
 
 ```bash
-ORIGIN=http://hostname.local.mesh:PORT node build
+ORIGIN=http://hostname.local.mesh:PORT PORT=3000 node build
 ```
 
 Next, connect the Pico to its AREDN node. Since we’re using the direct IP address, the Pico should not be affected by DNS propagation delays. However, it may produce an error if the API endpoint is not accessible, so it’s recommended to initialize and connect the Raspberry Pi before the Pico.
