@@ -59,3 +59,5 @@ ORIGIN=http://hostname.local.mesh:3000 PORT=3000 node build
 Next, connect the Pico to its AREDN node. Since we’re using the direct IP address, the Pico should not be affected by DNS propagation delays. However, it may produce an error if the API endpoint is not accessible, so it’s recommended to initialize and connect the Raspberry Pi before the Pico.
 
 Finally, connect your machine to its AREDN node. I found that it took about three minutes for the hostname to start resolving correctly. Nonetheless, the site should remain accessible via `http://RASPBERRYPI_IP:PORT`.
+
+#### Steps 1, 2, 3, 6, and 7 can be repeated to add additional forwarding nodes.
