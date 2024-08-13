@@ -53,7 +53,7 @@ Due to the DNS limitations mentioned earlier, a more reliable approach is to con
 Given the DNS issues discussed, the most reliable method is to first initialize the API and connect the Raspberry Pi to the AREDN network. The server should not encounter any issues at this stage, as it isn’t dependent on an active connection. To initialize the Node.js server in the `AREDN_site` directory:
 
 ```bash
-ORIGIN=http://hostname.local.mesh:PORT PORT=3000 node build
+ORIGIN=http://hostname.local.mesh:3000 PORT=3000 node build
 ```
 
 Next, connect the Pico to its AREDN node. Since we’re using the direct IP address, the Pico should not be affected by DNS propagation delays. However, it may produce an error if the API endpoint is not accessible, so it’s recommended to initialize and connect the Raspberry Pi before the Pico.
