@@ -34,7 +34,7 @@ To set up the API:
    ```
 4. Build the site:
    ```bash
-   node build
+   npm run build
    ```
 
 The port will be specified later.
