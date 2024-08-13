@@ -61,3 +61,33 @@ Next, connect the Pico to its AREDN node. Since we’re using the direct IP addr
 Finally, connect your machine to its AREDN node. I found that it took about three minutes for the hostname to start resolving correctly. Nonetheless, the site should remain accessible via `http://RASPBERRYPI_IP:PORT`.
 
 #### Steps 1, 2, 3, 6, and 7 can be repeated to add additional forwarding nodes.
+
+#### 8. Adding the webserver to be a systemd service
+Most Linux systems nowadays use a process manager, systemd. This will allow us to spin up the website on demand and, more importantly, any time our machine starts/reboots. This code is for a Raspberry Pi (5) but similar steps could be achieved with another Linux (Debian) system.
+
+In my `/etc/systemd/system/arednapp.service` I have:
+```bash
+[Service]
+WorkingDirectory=/home/pi/Documents/AREDN_site
+Environment=NODE_ENV=production IDLE_TIMEOUT=60 ORIGIN=http://raspberrypi.local.mesh:3000 PORT=3000
+ExecStart=/usr/bin/node /home/pi/Documents/AREDN_site/build
+```
+
+* see more on `IDLE_TIMEOUT` below
+
+Then `/etc/systemd/system/arednapp.socket`:
+```bash
+[Socket]
+ListenStream=3000
+
+[Install]
+WantedBy=sockets.target
+```
+
+To add this as a service, let's first make sure the daemon sees it:
+`sudo systemctl daemon-reload`
+
+Then finally let's enable the service:
+`sudo systemctl enable --now arednapp.socket`
+
+* `IDLE_TIMEOUT`: Specifies in seconds how long the server can sit idle before shutting down. When a request comes in while the server is "shut down" response time will be a little bit higher as the server has to spin back up to process the request. 
