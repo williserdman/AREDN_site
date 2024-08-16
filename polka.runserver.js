@@ -1,7 +1,8 @@
 import { handler } from "./build/handler.js";
+import polka from "polka";
 import compression from "@polka/compression";
 
-const app = express();
+const app = polka();
 
 // https://stackoverflow.com/questions/24897801/enable-access-control-allow-origin-for-multiple-domains-in-node-js
 // function to allow us to have multiple origins (AREDN and reg internet)
