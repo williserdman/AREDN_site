@@ -41,7 +41,7 @@ def post_request(sensor_id, temp, hum, co2, temp2, hum2, pressure, altitude, gas
     
     # We are going to initialize a request and save the variable so we can listen for a response
     # First argument is the API endpoint
-    r = urequests.post('http://mysite.local.mesh:3000/api',
+    r = urequests.post('http://XX.XX.XX.XX:3000/api',
                        
                        # This is not a security measure. While there may be possibilities of having higher level verification https://rietta.com/blog/authentication-without-encryption-for/
                        # All these headers do it prevent unintentional post requests.
