@@ -21,6 +21,6 @@ function fixCORSHeaders(req, res, next) {
 
 // let SvelteKit handle everything else, including serving prerendered pages and static assets
 app.use(fixCORSHeaders, handler, compression);
-app.listen(3000, () => {
-	console.log("listening on port 3000");
+app.listen(3001, () => {
+	console.log("listening on port 3001");
 });
