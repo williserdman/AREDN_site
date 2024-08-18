@@ -6,7 +6,11 @@ const app = express();
 // https://stackoverflow.com/questions/24897801/enable-access-control-allow-origin-for-multiple-domains-in-node-js
 // function to allow us to have multiple origins (AREDN and reg internet)
 function fixCORSHeaders(req, res, next) {
-	const allowedOrigins = ["http://aredn.williserdman.com", "http://raspberrypi.local.mesh"];
+	const allowedOrigins = [
+		"http://aredn.williserdman.com",
+		"http://raspberrypi.local.mesh",
+		"https://aredn.williserdman.com"
+	];
 	const origin = req.headers.origin;
 	if (allowedOrigins.includes(origin)) {
 		res.setHeader("Access-Control-Allow-Origin", origin);
