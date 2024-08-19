@@ -12,9 +12,10 @@ function fixCORSHeaders(req, res, next) {
 		"http://raspberrypi.local.mesh",
 		"https://aredn.williserdman.com"
 	];
-	console.log(origin);
 
 	const origin = req.headers.origin;
+	console.log(origin);
+
 	if (allowedOrigins.includes(origin)) {
 		process.env["ORIGIN"] = origin;
 	}
