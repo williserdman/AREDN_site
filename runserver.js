@@ -12,14 +12,13 @@ function fixCORSHeaders(req, res, next) {
 		"http://raspberrypi.local.mesh",
 		"https://aredn.williserdman.com"
 	];
+	console.log(origin);
+
 	const origin = req.headers.origin;
 	if (allowedOrigins.includes(origin)) {
-		res.setHeader("Access-Control-Allow-Origin", origin);
+		process.env["ORIGIN"] = origin;
 	}
 
-	res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-	res.setHeader("Access-Control-Allow-Credentials", true);
 	return next();
 }
 
