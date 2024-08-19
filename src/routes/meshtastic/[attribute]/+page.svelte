@@ -129,6 +129,7 @@
 		}
 
 		data = data; // chart will rerender
+		console.log(data);
 	}
 </script>
 

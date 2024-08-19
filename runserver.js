@@ -1,5 +1,6 @@
 import { handler } from "./build/handler.js";
 import compression from "@polka/compression";
+import express from "express";
 
 const app = express();
 

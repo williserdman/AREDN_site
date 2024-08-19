@@ -2,8 +2,9 @@ import { db } from "$lib/database.js";
 import { AsyncParser } from "@json2csv/node";
 
 export const GET = async ({ request }) => {
-	const stmt = db.prepare("SELECT * FROM sensor_data");
-	const info = stmt.all();
+	//const stmt = db.prepare("SELECT * FROM sensor_data");
+	//const info = stmt.all();
+	const info = await (await fetch("http://localhost:5000/out/sensors/all")).json();
 
 	//console.log(info);
 
