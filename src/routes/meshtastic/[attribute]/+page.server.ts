@@ -20,7 +20,7 @@ export async function load({ params }) {
 				throw error(404);
 			}
 
-			const response = await fetch(`http://10.200.242.238:5000/out/sensors/${requestedAttribute}`);
+			const response = await fetch(`http://localhost:5000/out/sensors/${requestedAttribute}`);
 			const rowsf = await response.json();
 			// Example input array
 
