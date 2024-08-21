@@ -20,11 +20,12 @@ export async function load({ params }) {
 				throw error(404);
 			}
 
-			const response = await fetch(`http://localhost:5000/out/sensors/${requestedAttribute}`, {
-				mode: "no-cors"
-			});
+			console.log(1);
+			const response = await fetch(`http://127.0.0.1:5000/out/sensors/${requestedAttribute}`);
+
+			console.log(response);
 			const rowsf = await response.json();
-			// Example input array
+			console.log(2);
 
 			// Function to convert the array of arrays into DataRow objects
 			const transformData = (data: string[][]): DataRow[] => {

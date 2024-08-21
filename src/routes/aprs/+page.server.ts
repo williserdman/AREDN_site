@@ -15,7 +15,7 @@ export const actions: Actions = {
 		}
 
 		// Perform your search logic here (e.g., fetch from an API)
-		const searchResults = await fetch(`http://localhost:5001/out/callsign/${callsign}`);
+		const searchResults = await fetch(`http://127.0.0.1:5001/out/callsign/${callsign}`);
 		const data = await searchResults.json();
 		//console.log(data);
 
