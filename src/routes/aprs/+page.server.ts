@@ -16,10 +16,11 @@ export const actions: Actions = {
 
 		// Perform your search logic here (e.g., fetch from an API)
 		const searchResults = await fetch(`http://10.200.245.89:5001/out/callsign/${callsign}`);
-		console.log(searchResults);
+		const data = await searchResults.json();
+		//console.log(data);
 
 		return {
-			searchResults: await searchResults.json()
+			searchResults: data
 		};
 	}
 };
