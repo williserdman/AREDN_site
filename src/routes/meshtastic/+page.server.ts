@@ -20,13 +20,12 @@ export const actions = {
 		//const config1 = raw_config1 * 1;
 		const config2 = formData.get("config2");
 
-		fetch("http://10.200.242.238:5000/in/MeshtasticSensors/config", {
+		fetch("http://localhost:5000/in/MeshtasticSensors/config", {
 			method: "POST",
 			body: JSON.stringify({
 				payload: config2
 			})
 		});
-		//10.200.242.238:5000/in/MeshtasticSensors/config
 
 		http: if (id === "" || config1 === "" || config2 === "") {
 			return fail(400, {
