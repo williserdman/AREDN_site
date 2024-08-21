@@ -4,7 +4,7 @@ import { AsyncParser } from "@json2csv/node";
 export const GET = async ({ request }) => {
 	//const stmt = db.prepare("SELECT * FROM sensor_data");
 	//const info = stmt.all();
-	const info = await (await fetch("http://localhost:5000/out/sensors/all")).json();
+	const info = await (await fetch("http://127.0.0.1:5000/out/sensors/all")).json();
 
 	//console.log(info);
 
