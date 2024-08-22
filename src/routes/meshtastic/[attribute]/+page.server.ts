@@ -24,7 +24,7 @@ export async function load({ params }) {
 			}
 
 			// lets grab the data from our API
-			const response = await fetch(`http://locahost:5000/out/sensors/${requestedAttribute}`);
+			const response = await fetch(`http://localhost:5000/out/sensors/${requestedAttribute}`);
 			const rowsf = await response.json();
 
 			// Function to convert the array of arrays into DataRow objects
