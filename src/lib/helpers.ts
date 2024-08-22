@@ -26,3 +26,7 @@ export function destroyChart(chart: Chart | undefined): void {
 		chart.destroy();
 	}
 }
+
+export function capitalizeFirstLetter(inString: string) {
+	return inString.charAt(0).toUpperCase() + inString.slice(1);
+}

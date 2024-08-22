@@ -135,10 +135,12 @@
 		data = data; // chart will rerender
 		console.log(data);
 	}
+
+	import { capitalizeFirstLetter } from "$lib/helpers.js";
 </script>
 
 <svelte:head>
-	<title>{attributeName.toWellFormed()} - Meshtastic Sensor Collection</title>
+	<title>{capitalizeFirstLetter(attributeName)} - Meshtastic Sensor Collection</title>
 </svelte:head>
 
 <div class="container mt-6">
