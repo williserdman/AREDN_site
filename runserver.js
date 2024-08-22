@@ -16,9 +16,12 @@ function fixCORSHeaders(req, res, next) {
 	const origin = req.headers.origin;
 	console.log(origin);
 
-	if (allowedOrigins.includes(origin)) {
+	/* if (allowedOrigins.includes(origin)) {
 		process.env["ORIGIN"] = origin;
-	}
+	} */
+
+	// WARNING: currently all origins are allowed
+	process.env["ORIGIN"] = origin;
 
 	return next();
 }
