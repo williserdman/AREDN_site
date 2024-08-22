@@ -1,94 +1,67 @@
-<script lang="ts">
-	// Add any TypeScript or SvelteKit-specific logic here if needed
-</script>
+<svelte:head>
+	<title>KO4TL/Mendez Lab - PSU MCECS</title>
+</svelte:head>
 
-<section class="section">
-	<div class="container">
+<main class="container">
+	<section class="section">
+		<h1 class="title">Environmental Monitoring with AREDN, APRS, and MQTT</h1>
 		<div class="content">
-			<h1 class="title has-text-primary">Joshua Méndez Harper Lab</h1>
-			<p class="subtitle has-text-grey-dark">
-				Electrical and Computer Engineering <br />
-				Portland State University
+			<h2 class="title is-4">Project Overview</h2>
+			<p>
+				This project focuses on leveraging AREDN (Amateur Radio Emergency Data Network) and APRS
+				(Automatic Packet Reporting System) for comprehensive environmental monitoring. By
+				integrating these technologies with IoT protocols and MQTT (Message Queuing Telemetry
+				Transport), a lightweight messaging protocol that's primarily used for machine-to-machine
+				(M2M) communication and Internet of Things (IoT) connections. We created a robust system for
+				remote data collection and transmission.
 			</p>
 
-			<hr />
+			<h2 class="title is-5">AREDN and APRS Integration</h2>
+			<p>
+				AREDN provides a mesh network framework that enhances communication during emergencies by
+				establishing reliable and self-healing networks. APRS enables real-time data reporting,
+				including environmental parameters such as temperature, humidity, and atmospheric pressure.
+				Together, these technologies offer a resilient infrastructure for transmitting critical data
+				across dispersed locations.
+			</p>
 
-			<div class="box">
-				<h2 class="title is-4">About the Lab</h2>
-				<p>
-					Welcome to the Joshua Méndez Harper Lab at Portland State University. Our lab focuses on
-					pioneering research in the fields of electrostatics, triboelectricity, and environmental
-					monitoring using amateur radio technologies. We are dedicated to unraveling the
-					complexities of frictional electrification, understanding the electrostatic phenomena in
-					natural systems, and developing innovative solutions for hazard detection and response.
-				</p>
-			</div>
+			<h2 class="title is-5">MQTT Protocol for IoT Communication</h2>
+			<p>
+				MQTT, a lightweight messaging protocol for small sensors and mobile devices, plays a crucial
+				role in this project. It facilitates efficient communication between devices by providing a
+				publish/subscribe mechanism, which reduces the overhead associated with direct
+				device-to-device communication. This protocol is integral to managing data flow between
+				environmental sensors and the central server.
+			</p>
 
-			<div class="columns">
-				<div class="column">
-					<div class="box">
-						<h3 class="title is-5">Contact and Frictional Electrification</h3>
-						<p>
-							Our primary research delves into the longstanding enigma of why insulating materials
-							charge electrostatically upon contact. By employing advanced sensor designs, we
-							investigate the mechanisms driving triboelectrification in multi-particle systems and
-							supersonic flows. These studies have significant implications, ranging from
-							understanding volcanic lightning to the behavior of protoplanetary discs.
-						</p>
-					</div>
-				</div>
+			<h2 class="title is-5">System Architecture</h2>
+			<p>The system architecture involves several key components:</p>
+			<ul>
+				<li>
+					<strong>Sensor Nodes:</strong> Equipped with environmental sensors and communication modules,
+					these nodes collect data and transmit it via the Meshtastic network.
+				</li>
+				<li>
+					<strong>Gateway Nodes:</strong> Interface with the AREDN network and forward data to the central
+					server using MQTT.
+				</li>
+				<li>
+					<strong>Central Server:</strong> Receives and processes data from sensor nodes, providing a
+					web interface for monitoring and analysis.
+				</li>
+				<li>
+					<strong>Web Interface:</strong> Displays real-time data and visualizations, allowing users
+					to interact with the collected information.
+				</li>
+			</ul>
 
-				<div class="column">
-					<div class="box">
-						<h3 class="title is-5">Hazards and Amateur Radio</h3>
-						<p>
-							Situated in the seismically and volcanically active Pacific Northwest, our lab
-							leverages amateur radio to develop environmental monitoring systems. These systems,
-							based on the Amateur Radio Emergency Data Network (AREDN) and the Automatic Packet
-							Reporting System (APRS), are designed for rapid deployment and high resilience,
-							providing crucial data in real-time across challenging terrains.
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="columns">
-				<div class="column">
-					<div class="box">
-						<h3 class="title is-5">Coffee Research</h3>
-						<p>
-							In addition to our work on triboelectricity and hazard monitoring, our lab explores
-							the multifaceted world of coffee. We use cutting-edge techniques to investigate the
-							physical and chemical processes involved in coffee production, from grinding to
-							brewing. This research not only satisfies our curiosity but also offers insights into
-							the broader implications of electrostatic phenomena in granular materials.
-						</p>
-					</div>
-				</div>
-
-				<div class="column">
-					<div class="box">
-						<h3 class="title is-5">Bicycles for Resilient Communities</h3>
-						<p>
-							Recognizing the potential of bicycles as tools for resilience, our lab is developing a
-							fleet of communication-capable bicycles. These bikes are equipped with radios to
-							establish high-speed data links, offering a robust alternative communication network
-							during disasters. This project underscores our commitment to using technology to
-							enhance community resilience in the face of natural hazards.
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<h3 class="title is-5">Join Us</h3>
-				<p>
-					We are always looking for motivated students and researchers to join our team. Whether
-					you're interested in pursuing a PhD or contributing to ongoing projects, we welcome your
-					involvement. Please feel free to contact us to learn more about opportunities within our
-					lab.
-				</p>
-			</div>
+			<h2 class="title is-5">Future Directions</h2>
+			<p>
+				The ongoing development of this project aims to enhance the system's capabilities by
+				integrating additional sensor types, improving data accuracy, and expanding the network's
+				reach. Future work will also focus on optimizing the communication protocols and ensuring
+				the robustness of the system under various environmental conditions.
+			</p>
 		</div>
-	</div>
-</section>
+	</section>
+</main>

@@ -27,10 +27,9 @@
 	}
 </script>
 
-<p>
-	this is the home page. not sure what to put here so far.. maybe a map? or could be the admin
-	panel. probably should put at least some warning modal or something
-</p>
+<svelte:head>
+	<title>Meshtastic Sensor Collection</title>
+</svelte:head>
 
 {#each configs as config}
 	<div class="container">

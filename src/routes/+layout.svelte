@@ -15,9 +15,6 @@
 	<!-- hidden on touch devices -->
 	<div class="navbar-menu">
 		<div class="navbar-end">
-			<a class="navbar-item" href="/about" data-sveltekit-preload-data data-sveltekit-preload-code
-				>About</a
-			>
 			<div class="navbar-item is-hoverable has-dropdown">
 				<div class="navbar-link">Data</div>
 				<div class="navbar-dropdown is-right">

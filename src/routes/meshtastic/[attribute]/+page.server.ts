@@ -1,10 +1,11 @@
 import { db } from "$lib/database.js";
 import { error, redirect } from "@sveltejs/kit";
 
+// part of a data row
 interface special {
 	[attribute: string]: number;
 }
-
+// data row struct essentially
 type DataRow = special & {
 	createdAt: string;
 	sensorID: string;
@@ -13,19 +14,18 @@ type DataRow = special & {
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 	const getData = async () => {
+		// grabbing the attribute that was requested and sent to us in the url
 		const requestedAttribute = params.attribute;
 
 		try {
+			// if its a number we definitely don't have that
 			if (isNumeric(requestedAttribute)) {
 				throw error(404);
 			}
 
-			console.log(1);
-			const response = await fetch(`http://127.0.0.1:5000/out/sensors/${requestedAttribute}`);
-
-			console.log(response);
+			// lets grab the data from our API
+			const response = await fetch(`http://locahost:5000/out/sensors/${requestedAttribute}`);
 			const rowsf = await response.json();
-			console.log(2);
 
 			// Function to convert the array of arrays into DataRow objects
 			const transformData = (data: string[][]): DataRow[] => {
@@ -38,13 +38,8 @@ export async function load({ params }) {
 			};
 
 			const transformedData = transformData(rowsf);
-
-			const stmt = db.prepare(`SELECT sensorID, ${requestedAttribute}, createdAt FROM sensor_data`);
-			const rows = <DataRow[]>stmt.all();
-
 			const result: Record<string, { attribute: number[]; time: string[] }> = {};
 
-			//@ts-ignore
 			for (const row of transformedData) {
 				const { sensorID: id, [requestedAttribute]: attribute, createdAt: time } = row as DataRow;
 
@@ -59,14 +54,15 @@ export async function load({ params }) {
 			return result;
 		} catch (e) {
 			console.log(e);
+			// if there's any error we just return 404
 			error(404, { message: "Attribute not found!" });
 		}
 	};
 
 	return {
 		status: 200,
-		oneAttributeData: await getData(),
-		attributeName: params.attribute
+		oneAttributeData: await getData(), // await grabbing the data
+		attributeName: params.attribute // pass back the attribute we just collected
 	};
 }
 

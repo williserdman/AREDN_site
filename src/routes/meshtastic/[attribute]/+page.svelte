@@ -1,25 +1,34 @@
 <script lang="ts">
-	export let data;
+	export let data; // on page load we will call +page.Server.ts load function and the return value will be data
 	import { onMount, onDestroy } from "svelte";
-	//import { LineController, LineElement, PointElement, LinearScale, Chart, CategoryScale} from 'chart.js';
 	import Chart from "chart.js/auto";
-	import { createEventDispatcher } from "svelte";
 	import { formatDate } from "$lib/helpers.js";
 	import "chartjs-adapter-date-fns";
 
-	let { oneAttributeData, attributeName } = data;
-	let chart: Chart | undefined;
+	// so lets extract the data
+	let { oneAttributeData, attributeName }: { oneAttributeData: any; attributeName: string } = data;
+	let chart: Chart<any> | undefined;
 
+	interface dataset {
+		label: string;
+		data: { x: Date; y: number }[];
+		tension: number;
+	}
+
+	// mess with our data a little bit so that we can graph them
 	function createDatasets(): dataset[] {
 		// grabbing the ids in the collected data
 		let ids: string[] = [];
 		let datasets: dataset[] = [];
 
+		// our data can come from multiple sensors so we want to have each sensor be its own "dataset"
 		for (let key in oneAttributeData) {
 			ids.push(key);
 			const xValues: Date[] = [];
+
+			// we want the date along the x axis
 			//@ts-ignore
-			oneAttributeData[key]["time"].forEach((t) => xValues.push(new Date(1 * t)));
+			oneAttributeData[key]["time"].forEach((t) => xValues.push(new Date(parseFloat(t))));
 			const yValues = oneAttributeData[key]["attribute"];
 
 			const dataset = {
@@ -28,24 +37,16 @@
 				tension: 0.2
 			};
 
-			// in theory will work, currently untested
+			// makes sure that the data is within the range the user specified
 			dataset.data = dataset.data.filter((pair) => pair.x >= startDate && pair.x <= endDate);
 
-			dataset.data.length > 0 ? datasets.push(dataset) : {};
+			datasets.push(dataset);
 		}
 
 		return datasets;
 	}
 
-	interface dataset {
-		label: string;
-		data: { x: Date; y: number }[];
-		tension: number;
-	}
-
-	//Chart.register(LineController, LineElement, PointElement, LinearScale, CategoryScale);
 	function createChart(ctx: HTMLCanvasElement, datasets: dataset[]) {
-		//@ts-ignore
 		chart = new Chart(ctx, {
 			type: "line",
 			data: {
@@ -80,23 +81,25 @@
 	}
 
 	function setupChart(): void {
+		// grabbing our canvas element
 		const ctx = document.getElementById("myChart") as HTMLCanvasElement;
+
+		// using said element and plotting the data
 		createChart(ctx, createDatasets());
 	}
-	function destroyChart(): void {
-		if (chart) {
-			chart.destroy();
-		}
-	}
+
+	import { destroyChart } from "$lib/helpers.js";
 
 	let mounted = false;
-	$: data,
+	$: data, // when data changes (like an update fro the server, or change in date range)
 		(() => {
 			if (mounted) {
-				destroyChart();
+				// if we are mounted in the user's browser
+				destroyChart(chart);
 
-				({ oneAttributeData, attributeName } = data);
+				({ oneAttributeData, attributeName } = data); //unspead the data again
 
+				// then setup the chart again (we just destroyed it)
 				setupChart();
 			}
 		})();
@@ -107,7 +110,7 @@
 	});
 
 	onDestroy(() => {
-		destroyChart();
+		destroyChart(chart);
 	});
 
 	// setting the dates to be one day apart
@@ -134,6 +137,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{attributeName.toWellFormed()} - Meshtastic Sensor Collection</title>
+</svelte:head>
+
 <div class="container mt-6">
 	<canvas id="myChart"></canvas>
 	{#if !chart}
@@ -142,7 +149,8 @@
 		</div>
 	{/if}
 
-	<form action="">
+	<form>
+		<!-- this will only make changes in the users side so we don't need to send it to server -->
 		<div class="columns has-text-centered">
 			<div class="column">
 				<p>Start Date</p>
@@ -158,14 +166,3 @@
 		</div>
 	</form>
 </div>
-
-<!--   <div>
-    <div class="columns">
-      <div class="column">
-        <input type="range" class="slider" min="25" max="500" id="x-axis" bind:value={xwidth} >
-      </div>
-      <div class="column">
-        <input type="text" bind:value={xwidth}>
-      </div>
-    </div>
-  </div> -->
