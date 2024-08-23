@@ -81,10 +81,10 @@ In my `/etc/systemd/system/arednapp.service` I have:
 [Service]
 type=simple
 Description=Node.js App for AREDN (and Cloudflare Tunnel)
-WorkingDirectory=/home/pi/Documents/AREDN_site
-ExecStart=/usr/bin/node /home/pi/Documents/AREDN_site/runserver.js
+WorkingDirectory=/home/pi/Documents/AREDN_site/website
+ExecStart=/usr/bin/node /home/pi/Documents/AREDN_site/website/runserver.js
 Restart=on-failure
-Environment=NODE_ENV=production
+Environment=NODE_ENV=production PORT=3001
 # EnvironmentFile=/etc/app.env
 
 [Install]
@@ -122,8 +122,8 @@ Here's our `/etc/systemd/system/mqttbridge.service`:
 ```bash
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/Documents/pythonMQTT
-ExecStart=/home/pi/Documents/pythonMQTT/.venv/bin/hypercorn /home/pi/Documents/pythonMQTT/main.py
+WorkingDirectory=/home/pi/Documents/AREDN_site/pythonMQTT
+ExecStart=/home/pi/Documents/AREDN_site/pythonMQTT/.venv/bin/hypercorn /home/pi/Documents/AREDN_site/pythonMQTT/main.py
 KillSignal=SIGINT
 Restart=on-failure
 
