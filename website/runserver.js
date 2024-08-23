@@ -36,7 +36,8 @@ app.listen(3001, () => {
 });
 
 function getOriginNoPort(str) {
-	const words = str.split(":");
-
-	return words[0] + words[1];
+	if (typeof str == String) {
+		const words = str.split(":");
+		return words[0] + words[1];
+	}
 }
