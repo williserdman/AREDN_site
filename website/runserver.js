@@ -12,7 +12,8 @@ function fixCORSHeaders(req, res, next) {
 		"http://aredn.williserdman.com",
 		"http://raspberrypi.local.mesh",
 		"https://aredn.williserdman.com",
-		"http://10.57.247.122:3001"
+		"http://10.57.247.122",
+		"raspberrypi.local.mesh"
 	];
 
 	const origin = req.headers.origin;
@@ -23,7 +24,7 @@ function fixCORSHeaders(req, res, next) {
 	} */
 
 	// WARNING: currently all origins are allowed
-	process.env["ORIGIN"] = origin;
+	process.env["ORIGIN"] = getOriginNoPort(origin);
 
 	return next();
 }
@@ -33,3 +34,9 @@ app.use(fixCORSHeaders, handler, compression);
 app.listen(3001, () => {
 	console.log("listening on port 3001");
 });
+
+function getOriginNoPort(str) {
+	const words = str.split(":");
+
+	return words[0] + words[1];
+}

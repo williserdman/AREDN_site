@@ -3,6 +3,9 @@ from APRSDatabase import APRSDatabase
 import asyncio
 import re
 from quart import Quart
+import time
+
+time.sleep(10)
 
 client = APRSListener()
 client.connect()
