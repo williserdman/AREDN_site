@@ -32,7 +32,7 @@ To set up the API:
 2. Clone the AREDN site repository:
    ```bash
    git clone https://github.com/williserdman/AREDN_site
-   cd AREDN_site
+   cd AREDN_site/website
    ```
 3. Install the required Node packages:
    ```bash
