@@ -8,9 +8,11 @@ const app = express();
 // function to allow us to have multiple origins (AREDN and reg internet)
 function fixCORSHeaders(req, res, next) {
 	const allowedOrigins = [
+		// not configured!! see below if statement and checkOrigin attribute in svelte.config.js
 		"http://aredn.williserdman.com",
 		"http://raspberrypi.local.mesh",
-		"https://aredn.williserdman.com"
+		"https://aredn.williserdman.com",
+		"http://10.57.247.122:3001"
 	];
 
 	const origin = req.headers.origin;
