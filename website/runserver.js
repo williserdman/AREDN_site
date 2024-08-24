@@ -13,7 +13,7 @@ function fixCORSHeaders(req, res, next) {
 		"http://raspberrypi.local.mesh",
 		"https://aredn.williserdman.com",
 		"http://10.57.247.122",
-		"raspberrypi.local.mesh"
+		"http://raspberrypi.local.mesh"
 	];
 
 	const origin = req.headers.origin;
